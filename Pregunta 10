@@ -1,0 +1,50 @@
+#pregunta10
+#generar una secuencia de N letras donde m letras son al azar G y C
+#Permitir al usuario elegir la proporcion de G y C
+import random
+import math
+import numpy
+
+N = input('Ingrese longitud de secuencia: ')
+N = int(N)
+m = random.randint(1,N)
+
+porc = input('Ingese porcentaje de G/C: ')
+porc = float(porc)
+if porc > 1:
+  porc = porc * 0.01
+elif porc == 0:
+  porc = 0.5
+
+if ( (porc * m )- (math.floor(porc * m)) ) < 0.5:
+  cardtresG = math.floor(porc * m)
+else :
+  cardtresG = math.floor(porc * m) + 1
+
+vector34AG = numpy.zeros(N)
+for i in range(N):
+  if i < cardtresG :
+    vector34AG[i] = 3
+  elif i < m :
+    vector34AG[i] = 4
+  else :
+    vector34AG[i] = random.randint(1,2)
+#print(vector34AG)
+resultadoNumerico = vector34AG.tolist()
+#print(resultadoNumerico)
+random.shuffle(resultadoNumerico)
+#print(resultadoNumerico)
+resultado = resultadoNumerico
+#print(resultado)
+def reemplazo(reemp):
+  return {
+      1: 'A',
+      2: 'T',
+      3: 'G',
+      4: 'C'
+  }.get(reemp)
+#print(reemplazo(1))
+for j in range(N):
+  resultado[j] = reemplazo(resultadoNumerico[j])
+
+print("".join(resultado), ". con porcentaje ", porc)
