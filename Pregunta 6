@@ -1,0 +1,29 @@
+#pregunta6
+import math
+import numpy as np
+import random as rand
+
+x = [None]*5
+pie = (math.pi)/2
+#Se usa tangente por biyección entre imagen de tangente y los reales positivos
+for  i in range(0,5):
+  x[i] = math.tan(pie*rand.random())
+  
+print(x)
+def sumamin(x) :
+  sumamin = suma(x)-np.max(x)
+  return sumamin
+def sumamax(x) :
+  sumamax = suma(x)-np.min(x)
+  return sumamax
+def suma(x) :
+  sum = 0
+  for j in x :
+    sum = sum+j
+  return sum
+
+print(sumamin(x))
+print(sumamax(x))
+print(suma(x))
+
+
