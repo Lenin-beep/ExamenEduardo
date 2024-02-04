@@ -1,0 +1,28 @@
+#pregunta8
+#Buscar elementos repetidos entrando tamaño y elementos
+n = input()
+n = int(n)
+
+x = [None]*n
+y = [None]*n
+cont = int(0)
+for  i in range(0,n):
+  x[i] = input()
+  x[i] = float(x[i])
+
+print(x)
+for a in range(0,n):
+
+  comparador = x[a]
+  
+  for b in range(a,n):
+    comparado = x[b]
+
+    if ((comparado-comparador) == 0) and (b != a):
+      y[cont] = comparado
+      cont = cont+1
+
+while y[-1] is None:
+    del y[-1]
+
+print(y) 
