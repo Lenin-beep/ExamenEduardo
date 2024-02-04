@@ -1,0 +1,59 @@
+import os
+import filecmp
+
+def obtener_tamano_archivo(ruta):
+    try:
+        return os.path.getsize(ruta)
+    except Exception as e:
+        print(f"Error al obtener tamaño del archivo {ruta}: {e}")
+        return None
+
+def verificar_archivos_repetidos(directorio):
+    archivos = [entry for entry in os.scandir(directorio) if entry.is_file()]
+    archivos_repetidos = {}
+
+    for i, archivo1 in enumerate(archivos):
+        for archivo2 in archivos[i + 1:]:
+            try:
+                if filecmp.cmp(archivo1.path, archivo2.path, shallow=False):
+                    # Si los archivos son idénticos, los consideramos repetidos
+                    if archivo1.path not in archivos_repetidos:
+                        tamano1 = obtener_tamano_archivo(archivo1.path)
+                        if tamano1 is not None:
+                            archivos_repetidos[archivo1.path] = [tamano1]
+
+                    tamano2 = obtener_tamano_archivo(archivo2.path)
+                    if tamano2 is not None:
+                        archivos_repetidos[archivo1.path].append(archivo2.path)
+            except Exception as e:
+                if isinstance(e, FileNotFoundError) and "WinError 3" in str(e):
+                    print(f"Error: La ruta '{archivo2.path}' no existe.")
+                else:
+                    print(f"Error al comparar archivos: {e}")
+                
+                print(f"Rutas involucradas: {archivo1.path}, {archivo2.path}")
+
+    for archivo, rutas_repetidas in archivos_repetidos.items():
+        if len(rutas_repetidas) > 1:
+            # Hay archivos repetidos
+            num_repetidos = len(rutas_repetidas) - 1
+            tamano_total = sum(obtener_tamano_archivo(ruta) for ruta in rutas_repetidas[1:])
+            
+            print(f"{num_repetidos} archivos repetidos con un tamaño total de {tamano_total} bytes:")
+            print(f"Tamaño y rutas relativas:")
+            for ruta in rutas_repetidas:
+                try:
+                    print(f"Tamaño: {obtener_tamano_archivo(ruta)} bytes, Ruta Relativa: {os.path.relpath(ruta, directorio)}")
+                except Exception as e:
+                    print(f"Error al obtener tamaño del archivo {ruta}: {e}")
+        else:
+            # No hay archivos repetidos
+            try:
+                print(f"No hay archivos repetidos para {archivo}. Tamaño: {obtener_tamano_archivo(archivo)} bytes, Ruta Relativa: {os.path.relpath(archivo, directorio)}")
+            except Exception as e:
+                print(f"Error al obtener tamaño del archivo {archivo}: {e}")
+
+# Ejemplo de uso
+            
+directorio = r'C:\Users\LENIN\Desktop\LIBROS'
+verificar_archivos_repetidos(directorio)
