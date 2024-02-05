@@ -1,0 +1,21 @@
+"""
+Pregunta 6:
+Crear una funcion que determine si dado una serie de parentesis, estas se encuentran en pares, es decir,
+abierto '(' y cerrado ')'.
+Ejm:
+ Entrada: '(()()())()()(())'
+ Salida: True
+
+ Entrada: '(()('
+ Salida: False
+"""
+stringinput = input()
+check = False
+
+def verificarDuplas(mystring):
+  for i in range(0,len(mystring)):
+    if ( (mystring[i]+mystring[i+1]) == '()'):
+      check = True
+      return check
+
+verificarDuplas(stringinput)
