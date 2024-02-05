@@ -3,7 +3,7 @@ Preguntas en respuesta están en el readme, las preguntas de programar en el có
 
 1 Lenin Yassel Trinidad Flores
 
-2 Una estructura adjunta a cada dato que nos permite ubicar con velocidad información, orden de forma eficiente y lograr unicidad en valores de columna en clave primaria. Su desventaja radica en la dificultad de la implementación de forma eficiente, el espacio y costo de mantenimiento, 
+2 ( y PREGUNTA 3 DE EXAMEN 2)Una estructura adjunta a cada dato que nos permite ubicar con velocidad información, orden de forma eficiente y lograr unicidad en valores de columna en clave primaria. Su desventaja radica en la dificultad de la implementación de forma eficiente, el espacio y costo de mantenimiento, 
 
 3 Se debe planificar previamente el plan de respaldo, esto es, la frecuencia, el espacio dónde se almacenará el respaldo y sus copias y elección del método, a fin de proceder a una correcta y eficiente implementació. En la implementación se involucra el proceso de automatización del respaldo, así cómo verificaciones mediante pruebas de restauración para evitar pérdida de información, monitorización de los respaldos y documentación para llevar un registro de la información que se busque de los mismos.
 
