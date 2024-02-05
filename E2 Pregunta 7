@@ -1,0 +1,18 @@
+"""
+Pregunta 7:
+Desarrollar una funcion que me devuelva el n-esimo fibonacci
+Recordar que la serie fibonacci inicia en uno, es decir que fibonacci(1) = 1, ademas que
+el fibonacci(3) = fibonacci(2) + fibonacci(1)
+
+Nota: Implementarlo de modo iterativo.
+"""
+def fibonacci(n):
+  if n == 0:
+    return 0
+  elif n == 1:
+    return 1
+  else:
+    return(fibonacci(n-1) + fibonacci(n-2))
+
+
+fibonacci(7)
